@@ -1,10 +1,11 @@
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, Alert } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, Alert, View, Image} from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import LoginScreen from "./app/screens/login";
 import MenuScreen from "./app/screens/menu";
+import SearchScreen from "./app/screens/search";
 
 import color from "./app/constants/colors";
 
@@ -14,36 +15,59 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Login">
+        {/* Login header*/}
         <Stack.Screen
           name="Login"
           component={LoginScreen}
           options={{ headerShown: false }}
         />
+
+        {/* Menu header*/}
         <Stack.Screen
           name="Menu"
           component={MenuScreen}
           options={({ navigation }) => ({
             title: "GameShelf",
+            headerLeft: () => (
+              <View style={styles.headerTitleContainer}>
+              <Image
+                source={require('./app/assets/logo.png')}
+                style={styles.logo}
+              />
+            </View>
+            ),
             headerRight: () => (
-              <TouchableOpacity
-                style={styles.logoutButton}
-                onPress={() => {
-                  Alert.alert(
-                    "Confirm Logout",
-                    "Are you sure you want to log out?",
-                    [
-                      { text: "Cancel", style: "cancel" },
-                      {
-                        text: "Logout",
-                        style: "destructive",
-                        onPress: () => navigation.navigate("Login"),
-                      },
-                    ]
-                  );
-                }}
-              >
-                <Text style={styles.logoutText}>Logout</Text>
-              </TouchableOpacity>
+              <View style={styles.headerRightContainer}>
+                <TouchableOpacity
+                  style={styles.headerButton}
+                  onPress={() => {
+                    Alert.alert(
+                      "Confirm Logout",
+                      "Are you sure you want to log out?",
+                      [
+                        { text: "Cancel", style: "cancel" },
+                        {
+                          text: "Logout",
+                          style: "destructive",
+                          onPress: () => navigation.navigate("Login"),
+                        },
+                      ]
+                    );
+                  }}
+                >
+                  <Text style={styles.buttonText}>Logout</Text>
+                </TouchableOpacity>
+
+                  {/*Search*/}
+                <TouchableOpacity
+                  style={styles.headerButton}
+                  onPress={() => {
+                    navigation.navigate("Search");
+                  }}
+                >
+                  <Text style={styles.buttonText}>Search</Text>
+                </TouchableOpacity>
+              </View>
             ),
             headerBackVisible: false,
             headerTintColor: color.white,
@@ -52,9 +76,25 @@ export default function App() {
             },
             headerTitleStyle: {
               fontWeight: "bold",
-              fontSize: 30,
+              fontSize: 20,
             },
           })}
+        />
+
+        {/* Search header*/}
+        <Stack.Screen
+          name="Search"
+          component={SearchScreen}
+          options={{
+            headerTintColor: color.white,
+            headerStyle: {
+              backgroundColor: color.darkSecondary,
+            },
+            headerTitleStyle: {
+              fontWeight: "bold",
+              fontSize: 20,
+            },
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>
@@ -62,15 +102,24 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  logoutButton: {
-    marginRight: 10, // Adjust spacing
-    padding: 10, // Improve touch area
-    backgroundColor: color.primary, // Add contrast if needed
-    borderRadius: 5, // Optional
+  headerRightContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: 'center',
   },
-  logoutText: {
+  headerButton: {
+    marginRight: 10,
+    padding: 10,
+    backgroundColor: color.primary,
+    borderRadius: 5,
+  },
+  buttonText: {
     color: "#fff",
     fontWeight: "bold",
     fontSize: 16,
   },
+  logo:{
+    width: 40,  
+    height: 40,
+  }
 });

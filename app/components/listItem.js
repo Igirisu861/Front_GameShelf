@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
    
     item: {
         padding: 16,
-        marginVertical: 8,
+        marginVertical: 10,
         marginHorizontal: 16,
         backgroundColor: color.accentColor,
         borderRadius: 8,
@@ -32,6 +32,11 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.2,
         shadowRadius: 4,
+    }, 
+    name:{
+        fontSize:25,
+        fontWeight: "bold",
+        color: color.white
     }
     
 });

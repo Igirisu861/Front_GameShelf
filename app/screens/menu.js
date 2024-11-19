@@ -19,7 +19,23 @@ const MenuScreen = () => {
         {
             id: '3',
             name: 'Juegos para regalar'
-        }
+        },
+        {
+            id: '4',
+            name: 'Juegos recomendados'
+        },
+        {
+            id: '5',
+            name: 'Juegos para jugar con amigos'
+        },
+        {
+            id: '6',
+            name: 'Juegos por comprar'
+        },
+        {
+            id: '7',
+            name: 'Juegos favoritos'
+        },
     ];
     
     const handlePressItem = (item) => {
@@ -37,6 +53,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: color.backgroundDark,
+      justifyContent: "center"
     },
 });
 
