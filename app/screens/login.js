@@ -10,14 +10,14 @@ const LoginScreen = ({navigation}) => {
     if (username && password) {
         navigation.navigate("Menu")
     } else {
-      Alert.alert("Error", "Please enter both username and password.");
+      Alert.alert("Error", "Ingrese usuario y contraseña");
     }
   };
 
   return (
     <View style={styles.container}>
         <Text style={styles.title}>GameShelf</Text>
-        <Image source={require("../assets/Logo.png")} style={styles.logo}/>
+        <Image source={require("../assets/logo.png")} style={styles.logo}/>
         <Text style={styles.subtitle}>Login</Text>
         <TextInput
             style={styles.input}

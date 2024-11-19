@@ -42,12 +42,12 @@ export default function App() {
                   style={styles.headerButton}
                   onPress={() => {
                     Alert.alert(
-                      "Confirm Logout",
-                      "Are you sure you want to log out?",
+                      "Cerrar sesión",
+                      "¿Seguro que desea cerrar sesión?",
                       [
-                        { text: "Cancel", style: "cancel" },
+                        { text: "Cancelar", style: "cancel" },
                         {
-                          text: "Logout",
+                          text: "Salir",
                           style: "destructive",
                           onPress: () => navigation.navigate("Login"),
                         },
@@ -55,7 +55,7 @@ export default function App() {
                     );
                   }}
                 >
-                  <Text style={styles.buttonText}>Logout</Text>
+                  <Text style={styles.buttonText}>Log out</Text>
                 </TouchableOpacity>
 
                   {/*Search*/}
