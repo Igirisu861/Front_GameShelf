@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LoginScreen from "./app/screens/login";
 import MenuScreen from "./app/screens/menu";
 import SearchScreen from "./app/screens/search";
+import RegisterScreen from "./app/screens/register";
 
 import color from "./app/constants/colors";
 
@@ -19,6 +20,12 @@ export default function App() {
         <Stack.Screen
           name="Login"
           component={LoginScreen}
+          options={{ headerShown: false }}
+        />
+        {/*Register Screen*/}
+        <Stack.Screen
+          name="Register"
+          component={RegisterScreen}
           options={{ headerShown: false }}
         />
 
@@ -77,6 +84,7 @@ export default function App() {
             headerTitleStyle: {
               fontWeight: "bold",
               fontSize: 20,
+              color: color.white
             },
           })}
         />

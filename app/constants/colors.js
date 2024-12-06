@@ -1,7 +1,8 @@
 export default{
-    backgroundDark: "#3B413C",
+    backgroundDark: "#0E0E10",
+    textDark: "#112223",
     white: "#FFFFFF",
-    darkSecondary: "#9DB5B2",
-    lightSecondary: "#DAF0EE", 
-    accentColor: "#94D1BE"
+    darkSecondary: "#BAA6F8",
+    lightSecondary: "#AADBF1", 
+    accentColor: "#8214FF"
 }

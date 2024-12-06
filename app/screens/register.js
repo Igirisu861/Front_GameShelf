@@ -1,24 +1,24 @@
 import React, { useState } from "react";
-import { Text, TextInput, TouchableOpacity, StyleSheet, Alert, Image, ImageBackground } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Image, ImageBackground } from "react-native";
 import color from "../constants/colors";
-import { loginUser } from "../functions/authService";
+import { registerUser } from "../functions/authService";
 
-const LoginScreen = ({navigation}) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const RegisterScreen = ({navigation}) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleLogin = async () => {
-  try {
-    const response = await loginUser(email, password);
-    Alert.alert('Bienvenido!');
-    navigation.navigate('Menu');
-  } catch (error) {
-    Alert.alert('Error', 'Credenciales incorrectas');
-  }
-};
+    try {
+      const response = await registerUser(email, password);
+      Alert.alert('Bienvenido!');
+      navigation.navigate('Menu');
+    } catch (error) {
+      Alert.alert('Error', 'Datos incompletos');
+    }
+  };
 
-  const goRegister = () => {
-    navigation.navigate("Register")
+  const returnLogin = () => {
+    navigation.navigate('Login')
   }
 
   return (
@@ -30,29 +30,30 @@ const LoginScreen = ({navigation}) => {
      
       <Text style={styles.title}>GameShelf</Text>
       <Image source={require("../assets/logo.png")} style={styles.logo}/>
-      <Text style={styles.subtitle}>Login</Text>
+      <Text style={styles.subtitle}>Registro</Text>
 
         
         <TextInput
             style={styles.input}
-            placeholder="Email"
+            placeholder="Ingrese su email"
             placeholderTextColor="gray"
             value={email}
             onChangeText={setEmail}
         />
         <TextInput
             style={styles.input}
-            placeholder="Password"
+            placeholder="Ingrese su contraseña"
             placeholderTextColor="gray"
             value={password}
             onChangeText={setPassword}
             secureTextEntry
         />
-        <TouchableOpacity style={styles.button} onPress={handleLogin}>
-            <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonRegister} onPress={goRegister}>
+        
+        <TouchableOpacity style={styles.buttonRegister} onPress={handleLogin}>
             <Text style={styles.buttonText2}>Register</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={returnLogin}>
+            <Text style={styles.buttonText}>Volver a login</Text>
         </TouchableOpacity>
     </ImageBackground>
     
@@ -142,4 +143,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default RegisterScreen;
