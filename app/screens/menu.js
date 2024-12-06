@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Text, View, Alert, SafeAreaView, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import ListElement from "../components/listItem";
 import color from "../constants/colors";
-import { showLists, createList, deleteList, getGamesFromList, removeGame } from '../functions/authService'; 
+import { showLists, createList, deleteList, getGamesFromList, removeGame, changeName } from '../functions/authService'; 
 import GamesModal from '../components/GamesModal';  
 
 const MenuScreen = () => {
@@ -69,6 +69,19 @@ const MenuScreen = () => {
         Alert.alert("Error", "No fue posible crear la lista");
       }
     };
+
+    const handleChangeName = async (item, newName) => {
+      try {
+        await changeName({ list_name: item.list_name, new_name: newName });
+        const fetchedLists = await showLists();  // Fetch the updated list from the server
+        setLists(fetchedLists);
+        Alert.alert("¡Listo!", `El nombre de la lista fue cambiado a "${newName}"`);
+      } catch (error) {
+        console.error("Error cambiando el nombre de la lista:", error);
+        Alert.alert("Error", "No fue posible cambiar el nombre de la lista");
+      }
+    };
+    
   
     return (
       <SafeAreaView style={styles.container}>
@@ -106,6 +119,7 @@ const MenuScreen = () => {
             data={lists} 
             onPressItem={handlePressItem} 
             onDeleteItem={handleDeleteItem}
+            onChangeName={handleChangeName} 
           />
         )}
   

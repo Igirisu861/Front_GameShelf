@@ -18,12 +18,14 @@ const ListElement = ({ data, onPressItem, onDeleteItem, onChangeName }) => {
             return;
         }
         try {
+            console.log('Attempting to change name to:', newName); // Add debug log here
             await onChangeName(item, newName);
             setEditingName(null);
         } catch (error) {
             Alert.alert("Error", "No fue posible cambiar el nombre");
         }
     };
+    
 
     const renderItem = ({ item }) => (
         <View style={styles.itemContainer}>
